@@ -1,8 +1,55 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+header{
+	display: flex;
+	justify-content:center;
+	background-color: #100B1A;
+	position:relative;
+	top: -10px;
+	left: -8px;
+	padding-top: 25px;
+	padding-bottom:25px;
+	
+}
+body{
+	background-color: white;
 }
 
-a {
-  color: #00B7FF;
+@keyframes headerAnim {
+  0%   {background-color:black; left:-300px; top:0px;border-radius: 15px 50px 30px 5px;}
+  25%  {background-color:grey; left:200px; top:0px; border-radius: 15px 50px 30px 5px;}
+  100% {background-color:white; left:0px; top:0px;border-radius: 15px 50px 30px 5px;}
 }
+
+h1{
+	color: black;
+	width: 20%;
+	height: 120%;
+	position: relative;
+	background-color: white;
+	border-radius: 15px 50px 30px 5px;
+	animation-name: headerAnim;
+	animation-duration: 4s;
+}
+p{
+	color: #D1D7E0;
+}
+a {
+	color: #E7DFDD;
+	font-size: 100%;
+	font-family:Roboto;
+	text-decoration: none;
+	padding: 10px 20px;
+	font-family: Fjalla One; 
+	border-radius: 50px;
+	border: solid #FFFFFF;
+}
+
+ a:hover {
+	color: #ffffff;
+	font-size: 100%;
+	padding: 10px 20px;
+	border-radius: 50px;
+	background:#4717F6;
+	transition: all 0.3s ease 0s;
+	border: solid #4717F6;
+ }

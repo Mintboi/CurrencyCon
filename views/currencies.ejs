@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang ="en-IE">
+<title></title>
+<head>
+    <meta charset ="utf-8">
+	<link rel="stylesheet" href="../stylesheets/style.css">
+	<link rel="shortcut icon" href="../images/favicon.ico">
+    <title>Phone Usage Tracker</title>
+</head>
+<body>
+
+<header>
+<nav>
+          <a href="/currency/forex">Forex</a>
+          <a href="/currency">Conversion Rates</a>
+		  <a href="/currency/contactUs">About Us</a>
+</nav>
+</header>
+
+<main>
+ <table>
+    <thead>
+      <tr>
+        <th>From:</th>
+        <th>To:</th>
+        <th>Rate:</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i < currenciesList.length; i++) { %>
+     <tr>
+
+       <td><%= currenciesList[i] %></td>
+
+
+     </tr>
+  <% } %>
+    </tbody>
+
+  </table>
+</main>
+</body>
