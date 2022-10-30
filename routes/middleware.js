@@ -1,4 +1,5 @@
 var express = require('express');
+var axios = require('axios');
 var router = express.Router();
 const currencyModel = require("../models/currencyModel");
 
@@ -6,7 +7,7 @@ const currencyModel = require("../models/currencyModel");
 router.route('/')
     .get((req, res, next) => {
         var myHeaders = new Headers();
-        myHeaders.append("apikey", "goWT86wt3NTw699riO3Cx9tpmYw3NCyG");
+        myHeaders.append("apikey", "API Token goes here");
 
         var requestOptions = {
             method: 'get',
@@ -15,17 +16,29 @@ router.route('/')
         };
         // currency api using fetch returns results between start_date & end_date currently to ejs file for raw display
         // in process of converting to json and pushing to mongodb
-        fetch("https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2021-10-30&end_date=2022-10-30", requestOptions)
-            .then(response => response.text())
-            .then(result => currencyModel.create(result)
-                .then((currenciescreated) => {
-                    report.find()
-                        .then((currenciesfound) => {
-                            res.render('currentreport', { 'reportList': reportsfound, title: 'All reports' });
-                        }, (err) => next(err))
-                        .catch((err) => next(err));
-                }, (err) => next(err))
-                .catch((err) => next(err)))
+
+        axios.get('https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2021-10-30&end_date=2022-10-30', {
+            headers: {
+                "apikey": "API Token goes here"
+            }
+        })
+            .then(response => {
+                const { start_date, end_date, base, rates } = response.data;
+                const modelledData = {
+                    start_date: start_date,
+                    end_date: end_date,
+                    base: base,
+                    rates: rates.AED
+                }
+
+                currencyModel.create(modelledData)
+                    .then((currenciesCreated) => {
+                        currencyModel.find()
+                            .then((currenciesFound) => {
+                                res.render('currencies', { 'currenciesList': currenciesFound, title: 'All Reports' });
+                            }).catch(err => next(err))
+                    }).catch(err => next(err))
+            }).catch(err => next(err))
     });
 
 module.exports = router;
