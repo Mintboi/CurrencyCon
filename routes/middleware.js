@@ -7,7 +7,11 @@ const currencyModel = require("../models/currencyModel");
 router.route('/')
     .get((req, res, next) => {
         var myHeaders = new Headers();
+<<<<<<< HEAD
         myHeaders.append("apikey", "API Token goes here");
+=======
+        myHeaders.append("apikey", "token goes here");
+>>>>>>> 09f5784 (Removed API key)
 
         var requestOptions = {
             method: 'get',
@@ -19,7 +23,11 @@ router.route('/')
 
         axios.get('https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2021-10-30&end_date=2022-10-30', {
             headers: {
+<<<<<<< HEAD
                 "apikey": "API Token goes here"
+=======
+                "apikey": "token goes here"
+>>>>>>> 09f5784 (Removed API key)
             }
         })
             .then(response => {
